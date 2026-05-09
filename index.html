@@ -52,15 +52,30 @@
         ::-webkit-scrollbar-thumb { background: #059669; border-radius: 10px; }
         
         #toast { 
-            position: fixed; bottom: 30px; right: 30px; z-index: 1000;
-            transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: fixed; 
+            bottom: 30px; 
+            right: 0;
+            z-index: 1000;
+            transform: translateY(250%); 
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
-        #toast.active { transform: translateX(0); }
+        #toast.active { 
+            transform: translateX(-30px); 
+            pointer-events: auto;
+        }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            #toast { right: 10px; left: 10px; bottom: 90px; transform: translateY(150%); }
-            #toast.active { transform: translateY(0); }
+            #toast { 
+                right: 10px; 
+                left: 10px; 
+                bottom: 100px; 
+                transform: translateY(290%); 
+            }
+            #toast.active { 
+                transform: translateY(0); 
+            }
             .no-scrollbar::-webkit-scrollbar { display: none; }
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         }
@@ -438,7 +453,9 @@
         function showToast() {
             const t = document.getElementById('toast');
             t.classList.add('active');
-            setTimeout(() => t.classList.remove('active'), 3000);
+            setTimeout(() => {
+                t.classList.remove('active');
+            }, 3000);
         }
 
         window.onload = init;
